@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Map v3.0 — Always.Bank — Proposed Restructuring</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0e1a;
+            --surface: #111827;
+            --surface2: #1a2236;
+            --border: #1e2d45;
+            --accent: #2563eb;
+            --accent2: #3b82f6;
+            --accent-glow: rgba(37, 99, 235, 0.18);
+            --green: #10b981;
+            --amber: #f59e0b;
+            --purple: #8b5cf6;
+            --cyan: #06b6d4;
+            --rose: #f43f5e;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --tag-bg: rgba(37, 99, 235, 0.15);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #0a0e1a 0%, #0d1b3e 50%, #0a0e1a 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 56px 24px 48px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(37, 99, 235, 0.22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--tag-bg);
+            border: 1px solid rgba(37, 99, 235, 0.4);
+            border-radius: 999px;
+            padding: 4px 14px;
+            font-size: 12px;
+            color: var(--accent2);
+            font-weight: 600;
+            letter-spacing: .04em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        .hero p { color: var(--muted); font-size: 1rem; max-width: 600px; margin: 0 auto 28px; }
+        .hero-url {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            color: var(--accent2);
+            font-weight: 500;
+            text-decoration: none;
+            transition: border-color .2s;
+        }
+        .hero-url:hover { border-color: var(--accent2); }
+        .version-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--green), #059669);
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        /* STATS */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 24px;
+        }
+        .stat { text-align: center; }
+        .stat-num { font-size: 1.6rem; font-weight: 800; color: #fff; }
+        .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+
+        /* LAYOUT */
+        .container { max-width: 1280px; margin: 0 auto; padding: 48px 24px; }
+
+        /* SECTION TITLES */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .section-title .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            border: 1px solid;
+        }
+
+        /* TABS */
+        .tab-bar {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 6px;
+        }
+        .tab-btn {
+            padding: 8px 18px;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-family: 'Inter', sans-serif;
+            font-size: .82rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all .2s;
+        }
+        .tab-btn:hover { background: var(--surface2); color: var(--text); }
+        .tab-btn.active { background: var(--accent); color: #fff; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* TREE FLOW */
+        .flow {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px 24px;
+            margin-bottom: 40px;
+        }
+        .flow-box {
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: .82rem;
+            font-weight: 600;
+            text-align: center;
+            min-width: 110px;
+            border: 1px solid;
+        }
+        .flow-root { background: rgba(37,99,235,.2); border-color: var(--accent); color: #93c5fd; }
+        .flow-l1 { background: rgba(16,185,129,.15); border-color: var(--green); color: #6ee7b7; }
+        .flow-l2 { background: rgba(30,42,69,.9); border-color: var(--border); color: var(--muted); font-size: .75rem; font-weight: 500; }
+        .flow-node { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        .flow-children { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+
+        /* CONTENT CARDS */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .content-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .content-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 32px rgba(37,99,235,.1);
+        }
+        .content-card-header {
+            padding: 18px 22px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .content-card-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .card-icon {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; flex-shrink: 0;
+            border: 1px solid;
+        }
+        .page-title { font-weight: 700; font-size: 1rem; color: #fff; }
+        .page-url { font-size: 11px; color: var(--muted); font-family: 'SF Mono', Monaco, monospace; }
+        a.page-url-link { font-size: 11px; color: var(--cyan); font-family: 'SF Mono', Monaco, monospace; text-decoration: none; display: block; transition: color .2s; }
+        a.page-url-link:hover { color: var(--accent2); text-decoration: underline; }
+        .content-card-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        .content-section {
+            padding: 18px 22px;
+            border-bottom: 1px solid var(--border);
+        }
+        .content-section:nth-child(odd) { border-right: 1px solid var(--border); }
+        .content-section:last-child, .content-section:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+        .content-section-title {
+            font-size: .7rem;
+            font-weight: 700;
+            color: var(--accent2);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .content-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .content-list li {
+            font-size: .8rem;
+            color: var(--muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        .content-list li::before {
+            content: '›';
+            color: var(--accent2);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* CTA TAGS */
+        .cta-list { display: flex; flex-wrap: wrap; gap: 6px; }
+        .cta-tag {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 4px 10px; border-radius: 6px; font-size: 11px;
+            font-weight: 600; border: 1px solid; cursor: default;
+        }
+        .cta-primary { background: rgba(37,99,235,.15); border-color: rgba(37,99,235,.45); color: #93c5fd; }
+        .cta-green { background: rgba(16,185,129,.12); border-color: rgba(16,185,129,.4); color: #6ee7b7; }
+        .cta-amber { background: rgba(245,158,11,.12); border-color: rgba(245,158,11,.4); color: #fcd34d; }
+        .cta-purple { background: rgba(139,92,246,.12); border-color: rgba(139,92,246,.4); color: #c4b5fd; }
+        .cta-cyan { background: rgba(6,182,212,.12); border-color: rgba(6,182,212,.4); color: #a5f3fc; }
+        .cta-rose { background: rgba(244,63,94,.12); border-color: rgba(244,63,94,.4); color: #fda4af; }
+
+        /* STATUS BADGES */
+        .status-badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 999px;
+            letter-spacing: .03em;
+            text-transform: uppercase;
+        }
+        .badge-active { background: rgba(16,185,129,.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,.4); }
+        .badge-coming { background: rgba(245,158,11,.15); color: #fcd34d; border: 1px solid rgba(245,158,11,.4); }
+        .badge-duplicate { background: rgba(244,63,94,.15); color: #fda4af; border: 1px solid rgba(244,63,94,.4); }
+        .badge-anchor { background: rgba(139,92,246,.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,.4); }
+
+        /* DUPLICATES TABLE */
+        .dup-table-wrap {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+        table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+        th {
+            background: var(--surface2);
+            color: var(--accent2);
+            font-size: .72rem;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            vertical-align: top;
+        }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(255,255,255,.025); }
+        td code {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: .78rem;
+            color: var(--cyan);
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+
+        /* FULL WIDTH SECTION */
+        .content-section.full-width {
+            grid-column: 1 / -1;
+            border-right: none !important;
+        }
+
+        /* LEGEND */
+        .legend {
+            display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px;
+            padding: 16px 20px; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 12px; font-size: 12px;
+        }
+        .legend span { display: flex; align-items: center; gap: 6px; color: var(--muted); font-weight: 500; }
+        .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+        /* FOOTER */
+        .footer-note {
+            text-align: center;
+            color: var(--muted);
+            font-size: .8rem;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .content-card-body { grid-template-columns: 1fr; }
+            .content-section:nth-child(odd) { border-right: none; }
+            .stats { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-badge">🗺️ Site Map <span class="version-tag" style="background:linear-gradient(135deg,#f59e0b,#d97706);">v3.0 — PROPOSAL</span></div>
+        <h1>Always.Bank</h1>
+        <p>Proposed restructuring: 4 main menus, reorganized navigation, and optimized content architecture for better UX.</p>
+        <a class="hero-url" href="https://www.always.bank/" target="_blank">🔗 www.always.bank</a>
+    </header>
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat"><div class="stat-num" style="color:#fcd34d;">4</div><div class="stat-label">Main Menus</div></div>
+        <div class="stat"><div class="stat-num">15</div><div class="stat-label">Pages Mapped</div></div>
+        <div class="stat"><div class="stat-num">10</div><div class="stat-label">Unique CTAs</div></div>
+        <div class="stat"><div class="stat-num">6</div><div class="stat-label">Forms</div></div>
+        <div class="stat"><div class="stat-num" style="color:#6ee7b7;">3</div><div class="stat-label">Key Changes</div></div>
+    </div>
+
+    <div class="container">
+
+        <!-- LEGEND -->
+        <div class="legend">
+            <strong style="color:#fff; margin-right:4px;">Status Legend:</strong>
+            <span><span class="legend-dot" style="background:#10b981;"></span>Active Page</span>
+            <span><span class="legend-dot" style="background:#f59e0b;"></span>Coming Soon</span>
+            <span><span class="legend-dot" style="background:#f43f5e;"></span>Duplicate / Redundant</span>
+            <span><span class="legend-dot" style="background:#8b5cf6;"></span>Anchor / No Own Page</span>
+        </div>
+
+        <!-- TABS -->
+        <div class="tab-bar">
+            <button class="tab-btn active" onclick="showTab('structure')">🌐 Site Structure</button>
+            <button class="tab-btn" onclick="showTab('content')">📄 Content Mapping</button>
+            <button class="tab-btn" onclick="showTab('changes')">✨ Proposed Changes</button>
+        </div>
+
+        <!-- ═══════ TAB 1: STRUCTURE ═══════ -->
+        <div id="tab-structure" class="tab-content active">
+            <div class="section-title">
+                <div class="icon" style="background:rgba(37,99,235,.15);border-color:rgba(37,99,235,.5);">🌐</div>
+                Site Hierarchical Structure
+            </div>
+            <div class="flow">
+                <div style="display:flex;justify-content:center;margin-bottom:20px;">
+                    <div class="flow-node">
+                        <div class="flow-box flow-root">🏛️ always.bank</div>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content:center;gap:32px;flex-wrap:wrap;align-items:flex-start;">
+                    <!-- LOANS -->
+                    <div class="flow-node">
+                        <div class="flow-box flow-l1">💰 Loans</div>
+                        <div class="flow-children">
+                            <div class="flow-box flow-l2">Traditional Loans</div>
+                            <div class="flow-box flow-l2">└ Term Loans</div>
+                            <div class="flow-box flow-l2">└ Lines of Credit</div>
+                            <div class="flow-box flow-l2">Gov. Guaranteed</div>
+                            <div class="flow-box flow-l2">└ SBA Loans</div>
+                            <div class="flow-box flow-l2">└ USDA Loans</div>
+                            <div class="flow-box flow-l2">Specialty Finance</div>
+                            <div class="flow-box flow-l2">└ Invoice Factoring</div>
+                            <div class="flow-box flow-l2">└ Asset-Based Lending</div>
+                        </div>
+                    </div>
+                    <!-- BANKING -->
+                    <div class="flow-node">
+                        <div class="flow-box flow-l1" style="background:rgba(139,92,246,.15);border-color:#8b5cf6;color:#c4b5fd;">🏦 Banking</div>
+                        <div class="flow-children">
+                            <div class="flow-box flow-l2">Always Personal Banking</div>
+                            <div class="flow-box flow-l2">└ Always Savings Account</div>
+                        </div>
+                    </div>
+                    <!-- RESOURCES (was Learn) -->
+                    <div class="flow-node">
+                        <div class="flow-box flow-l1" style="background:rgba(6,182,212,.15);border-color:#06b6d4;color:#a5f3fc;">📚 Resources</div>
+                        <div class="flow-children">
+                            <div class="flow-box flow-l2">Blog</div>
+                            <div class="flow-box flow-l2">FAQs</div>
+                        </div>
+                    </div>
+                    <!-- ABOUT (new) -->
+                    <div class="flow-node">
+                        <div class="flow-box flow-l1" style="background:rgba(245,158,11,.15);border-color:#f59e0b;color:#fcd34d;">ℹ️ About</div>
+                        <div class="flow-children">
+                            <div class="flow-box flow-l2">└ Our Team</div>
+                            <div class="flow-box flow-l2">└ Our Values</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ 3. CTA SUMMARY TABLE ══ -->
+            <div style="margin-top:40px;">
+                <div class="section-title">
+                    <div class="icon" style="background:rgba(139,92,246,.12);border-color:rgba(139,92,246,.45);">⚡</div>
+                    3. Complete CTA Summary
+                </div>
+                <div class="dup-table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>CTA</th>
+                                <th>Pages where it appears</th>
+                                <th>Destination URL</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Get Started</strong></td>
+                                <td>Home, Traditional Loans, Gov. Guaranteed, Specialty Finance, Business Banking, FAQs, Meet The Team, Core Values</td>
+                                <td><code>/get-started/</code></td>
+                                <td><span class="cta-tag cta-primary" style="font-size:11px;">Primary</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ask Us How</strong></td>
+                                <td>Home ("What We Offer" section – Loans)</td>
+                                <td><code>/get-started/</code></td>
+                                <td><span class="cta-tag cta-primary" style="font-size:11px;">Primary</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Login</strong></td>
+                                <td>Global header (all pages)</td>
+                                <td><code>/login/</code></td>
+                                <td><span class="cta-tag cta-amber" style="font-size:11px;">Access</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Notify Me / Get Notified</strong></td>
+                                <td>Business Banking, Personal Banking</td>
+                                <td>Inline form</td>
+                                <td><span class="cta-tag cta-green" style="font-size:11px;">Form</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Accept / Decline Cookies</strong></td>
+                                <td>Home (initial banner)</td>
+                                <td>—</td>
+                                <td><span class="cta-tag cta-cyan" style="font-size:11px;">Legal</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Read More (Blog)</strong></td>
+                                <td>Blog</td>
+                                <td>Individual articles</td>
+                                <td><span class="cta-tag cta-purple" style="font-size:11px;">Informational</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ══ 4. FOOTER ══ -->
+            <div style="margin-top:40px;">
+                <div class="section-title">
+                    <div class="icon" style="background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.45);">🔗</div>
+                    4. Footer
+                </div>
+                <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:40px;">
+                    <div style="padding:16px 18px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
+                        <div class="card-icon" style="background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.45);">📎</div>
+                        <div>
+                            <div class="page-title">Global Footer</div>
+                            <div class="page-url">Present on all pages</div>
+                        </div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:24px;padding:20px 18px;">
+                        <div>
+                            <h4 style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">💰 Loans</h4>
+                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Term Loans</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Lines of Credit</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• SBA Loans</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• USDA Loans</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Invoice Factoring</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Asset-Based Lending</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">🏦 Banking</h4>
+                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Always Personal Banking</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Always Savings Account</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">📚 Resources</h4>
+                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Blog</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• FAQs</li>
+                            </ul>
+                            <h4 style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;margin-top:14px;">ℹ️ About</h4>
+                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Our Team</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Our Values</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">📱 Follow Us</h4>
+                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Facebook</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• YouTube</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• LinkedIn</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Instagram</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">⚖️ Legal</h4>
+                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Privacy Policy</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Security</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Accessibility</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Terms of Use</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• FDIC-Insured</li>
+                                <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">• Equal Housing Lender</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ 5. FORMS — /get-started/ ══ -->
+            <div style="margin-top:40px;">
+                <div class="section-title">
+                    <div class="icon" style="background:rgba(244,63,94,.12);border-color:rgba(244,63,94,.45);">📝</div>
+                    5. Forms — /get-started/
+                </div>
+                <p style="color:var(--muted);font-size:.88rem;margin-bottom:20px;">The page <code style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:2px 6px;color:var(--cyan);font-family:monospace">/get-started/</code>
+                    contains <strong style="color:#fff;">6 accordion forms</strong>. Each one is activated based on the
+                    user's product of interest.</p>
+
+                <div style="display:flex;flex-direction:column;gap:20px;">
+
+                    <!-- F1: Traditional Loan -->
+                    <div style="background:var(--surface);border:1px solid rgba(16,185,129,.45);border-radius:14px;overflow:hidden;">
+                        <div style="padding:16px 18px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
+                            <div class="card-icon" style="background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.45);">📋</div>
+                            <div>
+                                <div class="page-title">Apply for an Always Traditional Loan</div>
+                                <div class="page-url">Accordion #1 · /get-started/</div>
+                            </div>
+                        </div>
+                        <div style="padding:4px 18px 16px;">
+                            <p style="font-size:.82rem;color:var(--muted);margin:10px 0 14px;">"Need a reliable loan to move your business forward? Complete the form below to apply for a Traditional loan customized to your needs."</p>
+                            <div class="dup-table-wrap" style="margin-bottom:0;">
+                                <table>
+                                    <thead><tr><th>#</th><th>Field</th><th>Type</th><th>Required</th><th>Options / Placeholder</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>1</td><td><strong>First Name</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>First Name</td></tr>
+                                        <tr><td>2</td><td><strong>Last Name</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Last Name</td></tr>
+                                        <tr><td>3</td><td><strong>Phone Number</strong></td><td>Phone</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Phone Number</td></tr>
+                                        <tr><td>4</td><td><strong>Personal Email</strong></td><td>Email</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Personal Email</td></tr>
+                                        <tr><td>5</td><td><strong>State / Region / Province</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>State/Region/Province</td></tr>
+                                        <tr><td>6</td><td><strong>Company</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Company</td></tr>
+                                        <tr><td>7</td><td><strong>Your Title</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Your Title</td></tr>
+                                        <tr><td>8</td><td><strong>Business Email</strong></td><td>Email</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Business Email</td></tr>
+                                        <tr><td>9</td><td><strong>Company Annual Revenue</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Company Annual Revenue</td></tr>
+                                        <tr><td>10</td><td><strong>Desired Loan Amount</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>What is your desired loan amount?</td></tr>
+                                        <tr><td>11</td><td><strong>Purpose of Loan</strong></td><td>Dropdown</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Business Acquisition · Equipment Purchase · Real Estate · Working Capital · Debt Refinance · Other</td></tr>
+                                        <tr><td colspan="5" style="text-align:right;"><span class="cta-tag cta-primary">📩 Submit</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- F2: SBA/USDA -->
+                    <div style="background:var(--surface);border:1px solid rgba(37,99,235,.45);border-radius:14px;overflow:hidden;">
+                        <div style="padding:16px 18px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
+                            <div class="card-icon" style="background:rgba(37,99,235,.15);border-color:rgba(37,99,235,.5);">🏛️</div>
+                            <div>
+                                <div class="page-title">Learn More about SBA or USDA Loan</div>
+                                <div class="page-url">Accordion #2 · /get-started/</div>
+                            </div>
+                        </div>
+                        <div style="padding:4px 18px 16px;">
+                            <div class="dup-table-wrap" style="margin-bottom:0;">
+                                <table>
+                                    <thead><tr><th>#</th><th>Field</th><th>Type</th><th>Required</th><th>Options / Placeholder</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>1</td><td><strong>First Name</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>First Name</td></tr>
+                                        <tr><td>2</td><td><strong>Last Name</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Last Name</td></tr>
+                                        <tr><td>3</td><td><strong>Phone Number</strong></td><td>Phone</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Phone Number</td></tr>
+                                        <tr><td>4</td><td><strong>Personal Email</strong></td><td>Email</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Personal Email</td></tr>
+                                        <tr><td>5</td><td><strong>State / Region / Province</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>State/Region/Province</td></tr>
+                                        <tr><td>6</td><td><strong>Company</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Company</td></tr>
+                                        <tr><td>7</td><td><strong>Your Title</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Your Title</td></tr>
+                                        <tr><td>8</td><td><strong>Business Email</strong></td><td>Email</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Business Email</td></tr>
+                                        <tr><td>9</td><td><strong>Company Annual Revenue</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Company Annual Revenue</td></tr>
+                                        <tr><td>10</td><td><strong>SBA or USDA Loan Interest</strong></td><td>Dropdown</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>SBA Loan · USDA Loan</td></tr>
+                                        <tr><td colspan="5" style="text-align:right;"><span class="cta-tag cta-primary">📩 Submit</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- F3: Asset-Based Lending -->
+                    <div style="background:var(--surface);border:1px solid rgba(139,92,246,.45);border-radius:14px;overflow:hidden;">
+                        <div style="padding:16px 18px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
+                            <div class="card-icon" style="background:rgba(139,92,246,.12);border-color:rgba(139,92,246,.45);">⚙️</div>
+                            <div>
+                                <div class="page-title">Apply for Asset-Based Lending</div>
+                                <div class="page-url">Accordion #3 · /get-started/</div>
+                            </div>
+                        </div>
+                        <div style="padding:4px 18px 16px;">
+                            <p style="font-size:.82rem;color:var(--muted);margin:10px 0 14px;">"Unlock the value of your assets to fuel your business growth. Fill out the form below to explore Asset-Based Lending solutions with Always.bank."</p>
+                            <div class="dup-table-wrap" style="margin-bottom:0;">
+                                <table>
+                                    <thead><tr><th>#</th><th>Field</th><th>Type</th><th>Required</th><th>Options / Placeholder</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>1</td><td><strong>First Name</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>First Name</td></tr>
+                                        <tr><td>2</td><td><strong>Last Name</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Last Name</td></tr>
+                                        <tr><td>3</td><td><strong>Phone Number</strong></td><td>Phone</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Phone Number</td></tr>
+                                        <tr><td>4</td><td><strong>Personal Email</strong></td><td>Email</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Personal Email</td></tr>
+                                        <tr><td>5</td><td><strong>State / Region / Province</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>State/Region/Province</td></tr>
+                                        <tr><td>6</td><td><strong>Company</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Company</td></tr>
+                                        <tr><td>7</td><td><strong>Industry</strong></td><td>Dropdown</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Various industries</td></tr>
+                                        <tr><td>8</td><td><strong>Estimated Funding Amount</strong></td><td>Dropdown</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Amount ranges</td></tr>
+                                        <tr><td>9</td><td><strong>How did you hear about us?</strong></td><td>Dropdown</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Various referral options</td></tr>
+                                        <tr><td colspan="5" style="text-align:right;"><span class="cta-tag cta-primary">📩 Submit</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- F4: Invoice Factoring -->
+                    <div style="background:var(--surface);border:1px solid rgba(245,158,11,.45);border-radius:14px;overflow:hidden;">
+                        <div style="padding:16px 18px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
+                            <div class="card-icon" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.45);">🧾</div>
+                            <div>
+                                <div class="page-title">Apply for Invoice Factoring</div>
+                                <div class="page-url">Accordion #4 · /get-started/</div>
+                            </div>
+                        </div>
+                        <div style="padding:4px 18px 16px;">
+                            <p style="font-size:.82rem;color:var(--muted);margin:10px 0 14px;">"Turn your unpaid invoices into immediate working capital. Just fill out the form below to get started with Invoice Factoring."</p>
+                            <div class="dup-table-wrap" style="margin-bottom:0;">
+                                <table>
+                                    <thead><tr><th>#</th><th>Field</th><th>Type</th><th>Required</th><th>Options / Placeholder</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>1</td><td><strong>First Name</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>First Name</td></tr>
+                                        <tr><td>2</td><td><strong>Last Name</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Last Name</td></tr>
+                                        <tr><td>3</td><td><strong>Phone Number</strong></td><td>Phone</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Phone Number</td></tr>
+                                        <tr><td>4</td><td><strong>Personal Email</strong></td><td>Email</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Personal Email</td></tr>
+                                        <tr><td>5</td><td><strong>Company</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Company</td></tr>
+                                        <tr><td>6</td><td><strong>State / Region / Province</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>State/Region/Province</td></tr>
+                                        <tr><td>7</td><td><strong>Industry</strong></td><td>Dropdown</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Various industries</td></tr>
+                                        <tr><td>8</td><td><strong>Estimated Funding Amount</strong></td><td>Dropdown</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Amount ranges</td></tr>
+                                        <tr><td colspan="5" style="text-align:right;"><span class="cta-tag cta-primary">📩 Submit</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- F5: Contact Us -->
+                    <div style="background:var(--surface);border:1px solid rgba(6,182,212,.45);border-radius:14px;overflow:hidden;">
+                        <div style="padding:16px 18px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
+                            <div class="card-icon" style="background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.45);">💬</div>
+                            <div>
+                                <div class="page-title">Contact Us</div>
+                                <div class="page-url">Accordion #5 · /get-started/</div>
+                            </div>
+                        </div>
+                        <div style="padding:4px 18px 16px;">
+                            <p style="font-size:.82rem;color:var(--muted);margin:10px 0 14px;">"Have any questions or need help finding the right solution for your business? Fill out the form below and a member of our team will be in touch soon."</p>
+                            <div class="dup-table-wrap" style="margin-bottom:0;">
+                                <table>
+                                    <thead><tr><th>#</th><th>Field</th><th>Type</th><th>Required</th><th>Options / Placeholder</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>1</td><td><strong>First Name</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>First Name</td></tr>
+                                        <tr><td>2</td><td><strong>Last Name</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Last Name</td></tr>
+                                        <tr><td>3</td><td><strong>Email</strong></td><td>Email</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Email</td></tr>
+                                        <tr><td>4</td><td><strong>Phone Number</strong></td><td>Phone</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Phone Number</td></tr>
+                                        <tr><td>5</td><td><strong>Message</strong></td><td>Textarea</td><td><span class="cta-tag cta-amber" style="font-size:10px;">— Optional</span></td><td>Free-form message</td></tr>
+                                        <tr><td colspan="5" style="text-align:right;"><span class="cta-tag cta-primary">📩 Submit</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- F6: Email Updates -->
+                    <div style="background:var(--surface);border:1px solid rgba(139,92,246,.45);border-radius:14px;overflow:hidden;">
+                        <div style="padding:16px 18px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
+                            <div class="card-icon" style="background:rgba(139,92,246,.12);border-color:rgba(139,92,246,.45);">📧</div>
+                            <div>
+                                <div class="page-title">Sign Up for Email Updates</div>
+                                <div class="page-url">Accordion #6 · /get-started/</div>
+                            </div>
+                        </div>
+                        <div style="padding:4px 18px 16px;">
+                            <p style="font-size:.82rem;color:var(--muted);margin:10px 0 14px;">"Want to stay in the loop with the latest from Always.bank? Fill out the sign-up form below to get updates, insights, and tips delivered straight to your inbox."</p>
+                            <div class="dup-table-wrap" style="margin-bottom:0;">
+                                <table>
+                                    <thead><tr><th>#</th><th>Field</th><th>Type</th><th>Required</th><th>Options / Placeholder</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>1</td><td><strong>First Name</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>First Name</td></tr>
+                                        <tr><td>2</td><td><strong>Last Name</strong></td><td>Text</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Last Name</td></tr>
+                                        <tr><td>3</td><td><strong>Email</strong></td><td>Email</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Email</td></tr>
+                                        <tr><td>4</td><td><strong>Phone Number</strong></td><td>Phone</td><td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span></td><td>Phone Number</td></tr>
+                                        <tr><td>5</td><td><strong>Message</strong></td><td>Textarea</td><td><span class="cta-tag cta-amber" style="font-size:10px;">— Optional</span></td><td>Free-form message</td></tr>
+                                        <tr><td colspan="5" style="text-align:right;"><span class="cta-tag cta-primary">📩 Submit</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Open an Account note -->
+                    <div style="padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:.83rem;color:var(--muted);">
+                        ℹ️ <strong style="color:#fff;">Open an Account</strong> — Does not contain an embedded form.
+                        Redirects to an <strong style="color:var(--accent2);">external</strong> application for personal
+                        savings account opening.
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ═══════ TAB 2: CONTENT MAPPING ═══════ -->
+        <div id="tab-content" class="tab-content">
+            <div class="section-title">
+                <div class="icon" style="background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.45);">📄</div>
+                Content Mapping per Page
+            </div>
+            <div class="content-grid">
+
+                <!-- HOME -->
+                <div class="content-card" style="border-color:rgba(37,99,235,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(37,99,235,.15);border-color:rgba(37,99,235,.5);">🏠</div>
+                            <div>
+                                <div class="page-title">Home Page</div>
+                                <a class="page-url-link" href="https://www.always.bank/" target="_blank">https://www.always.bank/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "The future of banking, a century in the making."</li>
+                                <li>Chartered in 1907 — FDIC insured digital bank</li>
+                                <li>"Real experts. Real convenient." — 24/7 online banking + human advice</li>
+                                <li>"Favorable rates for personalized solutions" — competitive rates section</li>
+                                <li>Robust fraud protection messaging</li>
+                                <li>Cookie consent banner (accept/decline)</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-section-title">🎯 CTAs & Actions</div>
+                            <div class="cta-list">
+                                <span class="cta-tag cta-primary">🚀 Get Started</span>
+                                <span class="cta-tag cta-amber">🔑 Login</span>
+                                <span class="cta-tag cta-primary">❓ Ask Us How</span>
+                                <span class="cta-tag cta-cyan">✅ Accept Cookies</span>
+                                <span class="cta-tag cta-cyan">✖ Decline Cookies</span>
+                            </div>
+                            <div class="content-section-title" style="margin-top:14px;">📋 Sections</div>
+                            <ul class="content-list">
+                                <li>Hero banner with value proposition</li>
+                                <li>"What We Offer" (Loans & Banking)</li>
+                                <li>Contact Us section</li>
+                                <li>Footer with legal links</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRADITIONAL LOANS -->
+                <div class="content-card" style="border-color:rgba(16,185,129,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.45);">📋</div>
+                            <div>
+                                <div class="page-title">Traditional Loans</div>
+                                <a class="page-url-link" href="https://www.always.bank/business-loans/traditional/" target="_blank">https://www.always.bank/business-loans/traditional/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "Business Loans"</li>
+                                <li>Tailored financing for business growth, equipment, inventory</li>
+                                <li>Types: Commercial/Industrial, Equipment, Inventory, Small Business</li>
+                                <li>Lines of Credit — revolving credit line description</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-section-title">🎯 CTAs & Notes</div>
+                            <div class="cta-list">
+                                <span class="cta-tag cta-primary">🚀 Get Started</span>
+                                <span class="cta-tag cta-amber">🔑 Login</span>
+                            </div>
+                            <p style="font-size:.75rem;color:var(--rose);margin-top:10px;">⚠️ Term Loans & Lines of Credit are sections within this page — NOT separate pages</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SBA LOANS -->
+                <div class="content-card" style="border-color:rgba(16,185,129,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.45);">🏛️</div>
+                            <div>
+                                <div class="page-title">SBA Loans</div>
+                                <a class="page-url-link" href="https://www.always.bank/business-loans/lending/sba/" target="_blank">https://www.always.bank/business-loans/lending/sba/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "Need an SBA loan? We have the expertise to guide you."</li>
+                                <li>"Preferred Lender Status" — can process/close/service without prior SBA review</li>
+                                <li>Caution about sending sensitive info via web forms</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-section-title">🎯 CTAs & Forms</div>
+                            <div class="cta-list">
+                                <span class="cta-tag cta-green">📩 Submit Form</span>
+                                <span class="cta-tag cta-amber">🔑 Login</span>
+                                <span class="cta-tag cta-primary">🚀 Get Started</span>
+                            </div>
+                            <div class="content-section-title" style="margin-top:14px;">📋 Form Fields</div>
+                            <ul class="content-list">
+                                <li>First Name, Last Name</li>
+                                <li>Email, Phone</li>
+                                <li>Company, Zip Code</li>
+                                <li>Message (textarea)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- USDA LOANS -->
+                <div class="content-card" style="border-color:rgba(16,185,129,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.45);">🌾</div>
+                            <div>
+                                <div class="page-title">USDA Loans</div>
+                                <a class="page-url-link" href="https://www.always.bank/business-loans/lending/usda/" target="_blank">https://www.always.bank/business-loans/lending/usda/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "USDA loans, also known as Business & Industry (B&I) loans"</li>
+                                <li>Supports rural businesses — modernize facilities, equipment, refinancing</li>
+                                <li>"Why Choose a USDA Loan?" section</li>
+                                <li>Focus on rural community development and job creation</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-section-title">🎯 CTAs</div>
+                            <div class="cta-list">
+                                <span class="cta-tag cta-primary">❓ Ask Us</span>
+                                <span class="cta-tag cta-green">✅ Apply Now</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INVOICE FACTORING -->
+                <div class="content-card" style="border-color:rgba(16,185,129,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.45);">📄</div>
+                            <div>
+                                <div class="page-title">Invoice Factoring</div>
+                                <a class="page-url-link" href="https://www.always.bank/business-loans/specialty-finance/invoice-factoring/" target="_blank">https://www.always.bank/business-loans/specialty-finance/invoice-factoring/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "Invoice Factoring"</li>
+                                <li>"How does invoice factoring work?" — 4-step process</li>
+                                <li>Step 1: Underwriting</li>
+                                <li>Step 2: Submission of invoices</li>
+                                <li>Step 3: Validation & Funding up to 95%</li>
+                                <li>Step 4: Return of unadvanced amount</li>
+                                <li>Targets immediate working capital needs</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-section-title">🎯 CTAs</div>
+                            <div class="cta-list">
+                                <span class="cta-tag cta-amber">🔑 Login</span>
+                                <span class="cta-tag cta-primary">🚀 Get Started</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ASSET-BASED LENDING -->
+                <div class="content-card" style="border-color:rgba(16,185,129,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.45);">⚙️</div>
+                            <div>
+                                <div class="page-title">Asset-Based Lending</div>
+                                <a class="page-url-link" href="https://www.always.bank/business-loans/specialty-finance/asset-based-lending/" target="_blank">https://www.always.bank/business-loans/specialty-finance/asset-based-lending/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "Asset-Based Lending"</li>
+                                <li>"How does Asset-Based Lending work?" — 4-step process</li>
+                                <li>Leverages inventory, equipment, and Accounts Receivable</li>
+                                <li>Requires "low risk" rating</li>
+                                <li>Includes field exams and asset appraisals</li>
+                                <li>Process takes several weeks</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-section-title">🎯 CTAs</div>
+                            <div class="cta-list">
+                                <span class="cta-tag cta-amber">🔑 Login</span>
+                                <span class="cta-tag cta-primary">🚀 Get Started</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BUSINESS BANKING -->
+                <div class="content-card" style="border-color:rgba(245,158,11,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(139,92,246,.12);border-color:rgba(139,92,246,.45);">🏢</div>
+                            <div>
+                                <div class="page-title">Business Banking</div>
+                                <a class="page-url-link" href="https://www.always.bank/small-business-banking-products/" target="_blank">https://www.always.bank/small-business-banking-products/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-coming">Coming Soon</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "Business Banking"</li>
+                                <li>"Small Business Savings Account" — marked Coming Soon</li>
+                                <li>"Small Business Checking" — marked Coming Soon</li>
+                                <li>Page is mostly placeholder for future products</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-section-title">🎯 CTAs</div>
+                            <div class="cta-list">
+                                <span class="cta-tag cta-amber">⏳ Coming Soon (disabled)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PERSONAL BANKING -->
+                <div class="content-card" style="border-color:rgba(139,92,246,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(139,92,246,.12);border-color:rgba(139,92,246,.45);">👤</div>
+                            <div>
+                                <div class="page-title">Personal Banking</div>
+                                <a class="page-url-link" href="https://www.always.bank/always-personal-banking/" target="_blank">https://www.always.bank/always-personal-banking/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "Personal Banking"</li>
+                                <li>"Always Savings" — high-yield savings + human support</li>
+                                <li>"Consumer Certificate of Deposit" — marked Coming Soon</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-section-title">🎯 CTAs</div>
+                            <div class="cta-list">
+                                <span class="cta-tag cta-primary">💳 Open An Account Today!</span>
+                                <span class="cta-tag cta-amber">⏳ Coming Soon (CD)</span>
+                            </div>
+                            <p style="font-size:.75rem;color:var(--rose);margin-top:10px;">⚠️ Shares significant content overlap with Savings Account page</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SAVINGS ACCOUNT -->
+                <div class="content-card" style="border-color:rgba(139,92,246,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(139,92,246,.12);border-color:rgba(139,92,246,.45);">💰</div>
+                            <div>
+                                <div class="page-title">Always Savings Account</div>
+                                <a class="page-url-link" href="https://www.always.bank/banking/personal-accounts/savings/" target="_blank">https://www.always.bank/banking/personal-accounts/savings/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "Always Savings"</li>
+                                <li>"Key Product Benefits" — competitive rates, human support</li>
+                                <li>"How it Works" — 3-step process</li>
+                                <li>Step 1: Apply online</li>
+                                <li>Step 2: Fund your account</li>
+                                <li>Step 3: Earn competitive interest</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-section-title">🎯 CTAs</div>
+                            <div class="cta-list">
+                                <span class="cta-tag cta-primary">💳 Open An Account Today!</span>
+                            </div>
+                            <p style="font-size:.75rem;color:var(--rose);margin-top:10px;">⚠️ Duplicates much of Personal Banking page content</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOG -->
+                <div class="content-card" style="border-color:rgba(245,158,11,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.45);">✍️</div>
+                            <div>
+                                <div class="page-title">Blog — The Tailored Take</div>
+                                <a class="page-url-link" href="https://www.always.bank/learn/resources/blog/" target="_blank">https://www.always.bank/learn/resources/blog/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section full-width">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "The Tailored Take"</li>
+                                <li>Categories: Always.bank Insights, Banking How-Tos, Financial Trends, SBA Education, Growth Tips</li>
+                                <li>Article listing with category filters</li>
+                                <li>Small business ideas and growth resources</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQs -->
+                <div class="content-card" style="border-color:rgba(245,158,11,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.45);">❓</div>
+                            <div>
+                                <div class="page-title">FAQs</div>
+                                <a class="page-url-link" href="https://www.always.bank/learn/resources/faqs/" target="_blank">https://www.always.bank/learn/resources/faqs/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section full-width">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "Frequently Asked Questions"</li>
+                                <li>Table of Contents navigation</li>
+                                <li>Section: Savings Account FAQs</li>
+                                <li>Section: Invoice Factoring FAQs</li>
+                                <li>Section: Asset-Based Lending FAQs</li>
+                                <li>Section: Compliance & Regulatory</li>
+                                <li>Accordion-style expandable answers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ABOUT -->
+                <div class="content-card" style="border-color:rgba(245,158,11,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.45);">🏦</div>
+                            <div>
+                                <div class="page-title">About Always.bank</div>
+                                <a class="page-url-link" href="https://www.always.bank/learn/about/" target="_blank">https://www.always.bank/learn/about/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section full-width">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "We're a digital bank with over 100 years of experience"</li>
+                                <li>Narrative: 100+ years of history connected to modern digital-first mission</li>
+                                <li>Focus: exclusively serving small businesses</li>
+                                <li>Heritage + innovation positioning</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MEET THE TEAM -->
+                <div class="content-card" style="border-color:rgba(245,158,11,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.45);">👥</div>
+                            <div>
+                                <div class="page-title">Meet The Team</div>
+                                <a class="page-url-link" href="https://www.always.bank/learn/about/team/" target="_blank">https://www.always.bank/learn/about/team/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section full-width">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "Meet The Team"</li>
+                                <li>Departments: Senior Management, Business Banking, Underwriting, Marketing, SBA Operations, Compliance</li>
+                                <li>Key leaders: Steve Smith, Greg Spade, Kathleen Metz</li>
+                                <li>Team member photos and role descriptions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CORE VALUES -->
+                <div class="content-card" style="border-color:rgba(245,158,11,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.45);">💎</div>
+                            <div>
+                                <div class="page-title">Core Values</div>
+                                <a class="page-url-link" href="https://www.always.bank/learn/about/values/" target="_blank">https://www.always.bank/learn/about/values/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section full-width">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "Core Values"</li>
+                                <li>Innovation — tailored digital solutions</li>
+                                <li>Humility — listening and adapting</li>
+                                <li>Efficiency — streamlined processes</li>
+                                <li>Inclusivity — accessible banking for all</li>
+                                <li>Service — customer-first approach</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GET STARTED -->
+                <div class="content-card" style="border-color:rgba(37,99,235,.4);">
+                    <div class="content-card-header">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(37,99,235,.15);border-color:rgba(37,99,235,.5);">🚀</div>
+                            <div>
+                                <div class="page-title">Get Started (Action Hub)</div>
+                                <a class="page-url-link" href="https://www.always.bank/get-started/" target="_blank">https://www.always.bank/get-started/</a>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">Active</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section">
+                            <div class="content-section-title">📝 Main Content</div>
+                            <ul class="content-list">
+                                <li>H1: "Get Started"</li>
+                                <li>Central hub for ALL application entry points</li>
+                                <li>"Open an Account" section</li>
+                                <li>"Learn More about SBA/USDA" section</li>
+                                <li>"Apply for Traditional Loan" section</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-section-title">📋 Forms</div>
+                            <ul class="content-list">
+                                <li><strong>Contact Us Form:</strong> First Name, Last Name, Email, Phone, Company, Zip, Message</li>
+                                <li><strong>Email Sign-up Form:</strong> First Name, Last Name, Email, Zip Code</li>
+                            </ul>
+                            <p style="font-size:.75rem;color:var(--rose);margin-top:10px;">⚠️ Duplicates CTA functionality of all other pages</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ═══════ TAB 3: PROPOSED CHANGES ═══════ -->
+        <div id="tab-changes" class="tab-content">
+            <div class="section-title">
+                <div class="icon" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.45);">✨</div>
+                Proposed Structural Changes
+            </div>
+            <p style="color:var(--muted);font-size:.88rem;margin-bottom:28px;">The following changes are proposed to improve navigation clarity and create a more intuitive information architecture.</p>
+
+            <div style="display:flex;flex-direction:column;gap:24px;">
+                <!-- CHANGE 1 -->
+                <div class="content-card" style="border-color:rgba(245,158,11,.5);">
+                    <div class="content-card-header" style="background:rgba(245,158,11,.06);">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.5);">1️⃣</div>
+                            <div>
+                                <div class="page-title">Rename "Learn" → "Resources"</div>
+                                <div class="page-url" style="color:var(--amber);">Navigation Menu Change</div>
+                            </div>
+                        </div>
+                        <span class="status-badge" style="background:rgba(245,158,11,.15);color:#fcd34d;border:1px solid rgba(245,158,11,.4);">RENAME</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section">
+                            <div class="content-section-title" style="color:var(--rose);">❌ Before (Current)</div>
+                            <ul class="content-list">
+                                <li><strong>Learn</strong> (main menu)</li>
+                                <li style="padding-left:14px;">Resources → Blog</li>
+                                <li style="padding-left:14px;">Resources → FAQs</li>
+                                <li style="padding-left:14px;">About Always.bank</li>
+                                <li style="padding-left:14px;">Meet The Team</li>
+                                <li style="padding-left:14px;">Core Values</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-section-title" style="color:var(--green);">✅ After (Proposed)</div>
+                            <ul class="content-list">
+                                <li><strong>Resources</strong> (main menu)</li>
+                                <li style="padding-left:14px;">Blog</li>
+                                <li style="padding-left:14px;">FAQs</li>
+                            </ul>
+                            <p style="font-size:.78rem;color:var(--cyan);margin-top:12px;">💡 <strong>Rationale:</strong> "Resources" is more direct and industry-standard. About content moved to its own menu.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHANGE 2 -->
+                <div class="content-card" style="border-color:rgba(16,185,129,.5);">
+                    <div class="content-card-header" style="background:rgba(16,185,129,.06);">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.5);">2️⃣</div>
+                            <div>
+                                <div class="page-title">New "About" Main Menu</div>
+                                <div class="page-url" style="color:var(--green);">New Top-Level Section</div>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-active">NEW</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section">
+                            <div class="content-section-title" style="color:var(--rose);">❌ Before (Current)</div>
+                            <ul class="content-list">
+                                <li>About pages nested under <strong>Learn</strong></li>
+                                <li>Meet The Team — sub-page of Learn</li>
+                                <li>Core Values — sub-page of Learn</li>
+                                <li style="color:var(--rose);">⚠️ Hard to find for users looking for company info</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-section-title" style="color:var(--green);">✅ After (Proposed)</div>
+                            <ul class="content-list">
+                                <li><strong>About</strong> (new 4th main menu)</li>
+                                <li style="padding-left:14px;">About Always.bank</li>
+                                <li style="padding-left:14px;">Our Team</li>
+                                <li style="padding-left:14px;">Our Values</li>
+                            </ul>
+                            <p style="font-size:.78rem;color:var(--cyan);margin-top:12px;">💡 <strong>Rationale:</strong> Gives company identity a prominent position. Standard across banking sites.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHANGE 3 -->
+                <div class="content-card" style="border-color:rgba(139,92,246,.5);">
+                    <div class="content-card-header" style="background:rgba(139,92,246,.06);">
+                        <div class="content-card-header-left">
+                            <div class="card-icon" style="background:rgba(139,92,246,.15);border-color:rgba(139,92,246,.5);">3️⃣</div>
+                            <div>
+                                <div class="page-title">Simplify "Banking" Menu</div>
+                                <div class="page-url" style="color:var(--purple);">Menu Restructuring</div>
+                            </div>
+                        </div>
+                        <span class="status-badge badge-anchor">SIMPLIFIED</span>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="content-section">
+                            <div class="content-section-title" style="color:var(--rose);">❌ Before (Current)</div>
+                            <ul class="content-list">
+                                <li><strong>Banking</strong> (main menu)</li>
+                                <li style="padding-left:14px;">Business → Always Business Banking</li>
+                                <li style="padding-left:14px;">Personal → Always Personal Banking</li>
+                                <li style="padding-left:28px;">└ Always Savings Account</li>
+                                <li style="color:var(--rose);">⚠️ Business Banking is "Coming Soon"</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-section-title" style="color:var(--green);">✅ After (Proposed)</div>
+                            <ul class="content-list">
+                                <li><strong>Banking</strong> (simplified)</li>
+                                <li style="padding-left:14px;">Always Personal Banking</li>
+                                <li style="padding-left:14px;">└ Always Savings Account</li>
+                            </ul>
+                            <p style="font-size:.78rem;color:var(--cyan);margin-top:12px;">💡 <strong>Rationale:</strong> Removes inactive sub-grouping. Cleaner hierarchy with only active products.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IMPACT SUMMARY -->
+            <div class="section-title" style="margin-top:40px;">
+                <div class="icon" style="background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.45);">📊</div>
+                Impact Summary
+            </div>
+            <div class="flow" style="text-align:center;">
+                <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:24px;">
+                    <div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:12px;padding:20px 28px;text-align:center;">
+                        <div style="font-size:2rem;font-weight:800;color:#fcd34d;">3 → 4</div>
+                        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">Main Menus</div>
+                    </div>
+                    <div style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:12px;padding:20px 28px;text-align:center;">
+                        <div style="font-size:2rem;font-weight:800;color:#6ee7b7;">+1</div>
+                        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">New About Section</div>
+                    </div>
+                    <div style="background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.3);border-radius:12px;padding:20px 28px;text-align:center;">
+                        <div style="font-size:2rem;font-weight:800;color:#c4b5fd;">−2</div>
+                        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">Sub-levels Removed</div>
+                    </div>
+                    <div style="background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);border-radius:12px;padding:20px 28px;text-align:center;">
+                        <div style="font-size:2rem;font-weight:800;color:#a5f3fc;">0</div>
+                        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">Pages Lost</div>
+                    </div>
+                </div>
+                <p style="color:var(--muted);font-size:.82rem;">All existing pages and content are preserved — only the navigation structure changes.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer-note">
+        Site Map v3.0 — Proposed Restructuring — Generated April 2026 — always.bank
+    </footer>
+
+    <script>
+        function showTab(name) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + name).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
