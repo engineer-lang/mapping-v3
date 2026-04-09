@@ -612,6 +612,23 @@
             border-top: 1px solid var(--border);
         }
 
+        .footer-link-wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 20px 22px 24px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer-link-grid {
+            display: grid;
+            align-items: start;
+            justify-content: center;
+            column-gap: clamp(18px, 3vw, 36px);
+            row-gap: 28px;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
         @media (max-width: 768px) {
             .content-card-body {
                 grid-template-columns: 1fr;
@@ -623,6 +640,16 @@
 
             .stats {
                 gap: 20px;
+            }
+
+            .footer-link-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (max-width: 1100px) and (min-width: 769px) {
+            .footer-link-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
             }
         }
     </style>
@@ -647,20 +674,16 @@
             <div class="stat-label">Main Menus</div>
         </div>
         <div class="stat">
-            <div class="stat-num">15</div>
+            <div class="stat-num">14</div>
             <div class="stat-label">Pages Mapped</div>
         </div>
         <div class="stat">
-            <div class="stat-num">7</div>
+            <div class="stat-num">8</div>
             <div class="stat-label">Unique CTAs</div>
         </div>
         <div class="stat">
             <div class="stat-num">5</div>
             <div class="stat-label">Forms</div>
-        </div>
-        <div class="stat">
-            <div class="stat-num" style="color:#6ee7b7;">3</div>
-            <div class="stat-label">Key Changes</div>
         </div>
     </div>
 
@@ -811,6 +834,12 @@
                                 <td><code>/learn/resources/faqs/</code></td>
                                 <td><span class="cta-tag cta-purple" style="font-size:11px;">Informational</span></td>
                             </tr>
+                            <tr>
+                                <td><strong>Send Message</strong></td>
+                                <td>Footer (all pages)</td>
+                                <td>Footer inline form</td>
+                                <td><span class="cta-tag cta-green" style="font-size:11px;">Form</span></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -833,114 +862,87 @@
                             <div class="page-url">Present on all pages</div>
                         </div>
                     </div>
-                    <div
-                        style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:24px;padding:20px 18px;">
+                    <div class="footer-link-wrap">
+                    <div class="footer-link-grid">
+                        <!-- Col 1: Loans -->
                         <div>
                             <h4
-                                style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">
+                                style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px 0;">
                                 💰 Loans</h4>
-                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Term Loans</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Lines of Credit</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • SBA Loans</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • USDA Loans</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Invoice Factoring</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Asset-Based Lending</li>
+                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin:0;padding:0;">
+                                <li style="font-size:.82rem;color:var(--muted);">• Term Loans</li>
+                                <li style="font-size:.82rem;color:var(--muted);">• Lines of Credit</li>
+                                <li style="font-size:.82rem;color:var(--muted);">• SBA Loans</li>
+                                <li style="font-size:.82rem;color:var(--muted);">• USDA Loans</li>
+                                <li style="font-size:.82rem;color:var(--muted);">• Invoice Factoring</li>
+                                <li style="font-size:.82rem;color:var(--muted);">• Asset-Based Lending</li>
                             </ul>
                         </div>
+                        <!-- Col 2: Banking -->
                         <div>
                             <h4
-                                style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">
+                                style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px 0;">
                                 🏦 Banking</h4>
-                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Always Personal Banking</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Always Savings Account</li>
+                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin:0;padding:0;">
+                                <li style="font-size:.82rem;color:var(--muted);">• Always Personal Banking</li>
+                                <li style="font-size:.82rem;color:var(--muted);">• Always Savings Account</li>
                             </ul>
                         </div>
-                        <div>
-                            <h4
-                                style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">
-                                📚 Resources</h4>
-                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Blog</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • FAQs</li>
-                            </ul>
-                            <h4
-                                style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;margin-top:14px;">
-                                ℹ️ About</h4>
-                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Our Team</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Our Values</li>
-                            </ul>
+                        <!-- Col 3: Resources + About (misma columna) -->
+                        <div style="display:flex;flex-direction:column;gap:28px;">
+                            <div>
+                                <h4
+                                    style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px 0;">
+                                    📚 Resources</h4>
+                                <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin:0;padding:0;">
+                                    <li style="font-size:.82rem;color:var(--muted);">• Blog</li>
+                                    <li style="font-size:.82rem;color:var(--muted);">• FAQs</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4
+                                    style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px 0;">
+                                    ℹ️ About</h4>
+                                <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin:0;padding:0;">
+                                    <li style="font-size:.82rem;color:var(--muted);">• Our Team</li>
+                                    <li style="font-size:.82rem;color:var(--muted);">• Our Values</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div>
-                            <h4
-                                style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">
-                                📱 Follow Us</h4>
-                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Facebook</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • YouTube</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • LinkedIn</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Instagram</li>
-                            </ul>
+                        <!-- Col 4: Follow Us + 💬 Contact Us debajo de Instagram (nueva sección, solo título) -->
+                        <div style="display:flex;flex-direction:column;gap:28px;">
+                            <div>
+                                <h4
+                                    style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px 0;">
+                                    📱 Follow Us</h4>
+                                <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin:0;padding:0;">
+                                    <li style="font-size:.82rem;color:var(--muted);">• Facebook</li>
+                                    <li style="font-size:.82rem;color:var(--muted);">• YouTube</li>
+                                    <li style="font-size:.82rem;color:var(--muted);">• LinkedIn</li>
+                                    <li style="font-size:.82rem;color:var(--muted);">• Instagram</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4
+                                    style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin:0;padding:0;">
+                                    💬 Contact Us</h4>
+                            </div>
                         </div>
+                        <!-- Col 5: Legal -->
                         <div>
                             <h4
-                                style="font-size:.8rem;font-weight:800;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;">
+                                style="font-size:.8rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px 0;">
                                 ⚖️ Legal</h4>
-                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Privacy Policy</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Security</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Accessibility</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Terms of Use</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • FDIC-Insured</li>
-                                <li
-                                    style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
-                                    • Equal Housing Lender</li>
+                            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin:0;padding:0;">
+                                <li style="font-size:.82rem;color:var(--muted);">• Privacy Policy</li>
+                                <li style="font-size:.82rem;color:var(--muted);">• Security</li>
+                                <li style="font-size:.82rem;color:var(--muted);">• Accessibility</li>
+                                <li style="font-size:.82rem;color:var(--muted);">• Terms of Use</li>
+                                <li style="font-size:.82rem;color:var(--muted);">• FDIC-Insured</li>
+                                <li style="font-size:.82rem;color:var(--muted);">• Equal Housing Lender</li>
                             </ul>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -953,8 +955,9 @@
                 </div>
                 <p style="color:var(--muted);font-size:.88rem;margin-bottom:20px;">The page <code
                         style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:2px 6px;color:var(--cyan);font-family:monospace">/get-started/</code>
-                    contains <strong style="color:#fff;">5 accordion forms</strong>. Each one is activated based on the
-                    user's product of interest.</p>
+                    contains <strong style="color:#fff;">4 accordion forms</strong> (loan products). General inquiries use
+                    the <strong style="color:#fff;">Contact Us</strong> form in the site footer only (not a separate
+                    page).</p>
 
                 <div style="display:flex;flex-direction:column;gap:20px;">
 
@@ -1412,85 +1415,6 @@
                         </div>
                     </div>
 
-                    <!-- F5: Contact Us -->
-                    <div
-                        style="background:var(--surface);border:1px solid rgba(6,182,212,.45);border-radius:14px;overflow:hidden;">
-                        <div
-                            style="padding:16px 18px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
-                            <div class="card-icon"
-                                style="background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.45);">💬</div>
-                            <div>
-                                <div class="page-title">Contact Us</div>
-                                <div class="page-url">Accordion #5 · /get-started/</div>
-                            </div>
-                        </div>
-                        <div style="padding:4px 18px 16px;">
-                            <p style="font-size:.82rem;color:var(--muted);margin:10px 0 14px;">"Have any questions or
-                                need help finding the right solution for your business? Fill out the form below and a
-                                member of our team will be in touch soon."</p>
-                            <div class="dup-table-wrap" style="margin-bottom:0;">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Field</th>
-                                            <th>Type</th>
-                                            <th>Required</th>
-                                            <th>Options / Placeholder</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><strong>First Name</strong></td>
-                                            <td>Text</td>
-                                            <td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span>
-                                            </td>
-                                            <td>First Name</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td><strong>Last Name</strong></td>
-                                            <td>Text</td>
-                                            <td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span>
-                                            </td>
-                                            <td>Last Name</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td><strong>Email</strong></td>
-                                            <td>Email</td>
-                                            <td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span>
-                                            </td>
-                                            <td>Email</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td><strong>Phone Number</strong></td>
-                                            <td>Phone</td>
-                                            <td><span class="cta-tag cta-green" style="font-size:10px;">✓ Yes</span>
-                                            </td>
-                                            <td>Phone Number</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td><strong>Message</strong></td>
-                                            <td>Textarea</td>
-                                            <td><span class="cta-tag cta-amber" style="font-size:10px;">—
-                                                    Optional</span></td>
-                                            <td>Free-form message</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="5" style="text-align:right;"><span
-                                                    class="cta-tag cta-primary">📩 Apply Now</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-
                     <!-- Open an Account note -->
                     <div
                         style="padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:.83rem;color:var(--muted);">
@@ -1532,7 +1456,8 @@
                                 <li><strong>Logo</strong> — Always.Bank brand logo (links to Home)</li>
                                 <li><strong>Loans</strong> — Main navigation menu</li>
                                 <li><strong>Banking</strong> — Main navigation menu</li>
-                                <li><strong>Resources</strong> — Main navigation menu</li>
+                                <li><strong>Resources</strong> — Main navigation menu (Blog, FAQs)</li>
+                                <li><strong>About</strong> — Main navigation menu (company)</li>
                             </ul>
                             <div class="content-section-title" style="margin-top:14px;">🎯 CTAs</div>
                             <div class="cta-list">
@@ -1577,6 +1502,7 @@
                                 <span class="cta-tag cta-green">📩 Subscribe</span>
                                 <span class="cta-tag cta-cyan">✅ Accept Cookies</span>
                                 <span class="cta-tag cta-cyan">✖ Decline Cookies</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1831,6 +1757,7 @@
                             <div class="content-section-title">🎯 CTAs</div>
                             <div class="cta-list">
                                 <span class="cta-tag cta-primary">💳 Open An Account Today!</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1982,170 +1909,6 @@
                 </div>
 
 
-            </div>
-        </div>
-
-        <!-- ═══════ TAB 3: PROPOSED CHANGES ═══════ -->
-        <div id="tab-changes" class="tab-content">
-            <div class="section-title">
-                <div class="icon" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.45);">✨</div>
-                Proposed Structural Changes
-            </div>
-            <p style="color:var(--muted);font-size:.88rem;margin-bottom:28px;">The following changes are proposed to
-                improve navigation clarity and create a more intuitive information architecture.</p>
-
-            <div style="display:flex;flex-direction:column;gap:24px;">
-                <!-- CHANGE 1 -->
-                <div class="content-card" style="border-color:rgba(245,158,11,.5);">
-                    <div class="content-card-header" style="background:rgba(245,158,11,.06);">
-                        <div class="content-card-header-left">
-                            <div class="card-icon"
-                                style="background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.5);">1️⃣</div>
-                            <div>
-                                <div class="page-title">Rename "Learn" → "Resources"</div>
-                                <div class="page-url" style="color:var(--amber);">Navigation Menu Change</div>
-                            </div>
-                        </div>
-                        <span class="status-badge"
-                            style="background:rgba(245,158,11,.15);color:#fcd34d;border:1px solid rgba(245,158,11,.4);">RENAME</span>
-                    </div>
-                    <div class="content-card-body">
-                        <div class="content-section">
-                            <div class="content-section-title" style="color:var(--rose);">❌ Before (Current)</div>
-                            <ul class="content-list">
-                                <li><strong>Learn</strong> (main menu)</li>
-                                <li style="padding-left:14px;">Resources → Blog</li>
-                                <li style="padding-left:14px;">Resources → FAQs</li>
-                                <li style="padding-left:14px;">About Always.bank</li>
-                                <li style="padding-left:14px;">Meet The Team</li>
-                                <li style="padding-left:14px;">Core Values</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <div class="content-section-title" style="color:var(--green);">✅ After (Proposed)</div>
-                            <ul class="content-list">
-                                <li><strong>Resources</strong> (main menu)</li>
-                                <li style="padding-left:14px;">Blog</li>
-                                <li style="padding-left:14px;">FAQs</li>
-                            </ul>
-                            <p style="font-size:.78rem;color:var(--cyan);margin-top:12px;">💡
-                                <strong>Rationale:</strong> "Resources" is more direct and industry-standard. About
-                                content moved to its own menu.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CHANGE 2 -->
-                <div class="content-card" style="border-color:rgba(16,185,129,.5);">
-                    <div class="content-card-header" style="background:rgba(16,185,129,.06);">
-                        <div class="content-card-header-left">
-                            <div class="card-icon"
-                                style="background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.5);">2️⃣</div>
-                            <div>
-                                <div class="page-title">New "About" Main Menu</div>
-                                <div class="page-url" style="color:var(--green);">New Top-Level Section</div>
-                            </div>
-                        </div>
-                        <span class="status-badge badge-active">NEW</span>
-                    </div>
-                    <div class="content-card-body">
-                        <div class="content-section">
-                            <div class="content-section-title" style="color:var(--rose);">❌ Before (Current)</div>
-                            <ul class="content-list">
-                                <li>About pages nested under <strong>Learn</strong></li>
-                                <li>Meet The Team — sub-page of Learn</li>
-                                <li>Core Values — sub-page of Learn</li>
-                                <li style="color:var(--rose);">⚠️ Hard to find for users looking for company info</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <div class="content-section-title" style="color:var(--green);">✅ After (Proposed)</div>
-                            <ul class="content-list">
-                                <li><strong>About</strong> (new 4th main menu)</li>
-                                <li style="padding-left:14px;">About Always.bank</li>
-                                <li style="padding-left:14px;">Our Team</li>
-                                <li style="padding-left:14px;">Our Values</li>
-                            </ul>
-                            <p style="font-size:.78rem;color:var(--cyan);margin-top:12px;">💡
-                                <strong>Rationale:</strong> Gives company identity a prominent position. Standard across
-                                banking sites.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CHANGE 3 -->
-                <div class="content-card" style="border-color:rgba(139,92,246,.5);">
-                    <div class="content-card-header" style="background:rgba(139,92,246,.06);">
-                        <div class="content-card-header-left">
-                            <div class="card-icon"
-                                style="background:rgba(139,92,246,.15);border-color:rgba(139,92,246,.5);">3️⃣</div>
-                            <div>
-                                <div class="page-title">Simplify "Banking" Menu</div>
-                                <div class="page-url" style="color:var(--purple);">Menu Restructuring</div>
-                            </div>
-                        </div>
-                        <span class="status-badge badge-anchor">SIMPLIFIED</span>
-                    </div>
-                    <div class="content-card-body">
-                        <div class="content-section">
-                            <div class="content-section-title" style="color:var(--rose);">❌ Before (Current)</div>
-                            <ul class="content-list">
-                                <li><strong>Banking</strong> (main menu)</li>
-                                <li style="padding-left:14px;">Business → Always Business Banking</li>
-                                <li style="padding-left:14px;">Personal → Always Personal Banking</li>
-                                <li style="padding-left:28px;">└ Always Savings Account</li>
-                                <li style="color:var(--rose);">⚠️ Business Banking is "Coming Soon"</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <div class="content-section-title" style="color:var(--green);">✅ After (Proposed)</div>
-                            <ul class="content-list">
-                                <li><strong>Banking</strong> (simplified)</li>
-                                <li style="padding-left:14px;">Always Personal Banking</li>
-                                <li style="padding-left:14px;">└ Always Savings Account</li>
-                            </ul>
-                            <p style="font-size:.78rem;color:var(--cyan);margin-top:12px;">💡
-                                <strong>Rationale:</strong> Removes inactive sub-grouping. Cleaner hierarchy with only
-                                active products.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- IMPACT SUMMARY -->
-            <div class="section-title" style="margin-top:40px;">
-                <div class="icon" style="background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.45);">📊</div>
-                Impact Summary
-            </div>
-            <div class="flow" style="text-align:center;">
-                <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:24px;">
-                    <div
-                        style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:12px;padding:20px 28px;text-align:center;">
-                        <div style="font-size:2rem;font-weight:800;color:#fcd34d;">3 → 5</div>
-                        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">
-                            Main Menus</div>
-                    </div>
-                    <div
-                        style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:12px;padding:20px 28px;text-align:center;">
-                        <div style="font-size:2rem;font-weight:800;color:#6ee7b7;">+1</div>
-                        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">
-                            New About Section</div>
-                    </div>
-                    <div
-                        style="background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.3);border-radius:12px;padding:20px 28px;text-align:center;">
-                        <div style="font-size:2rem;font-weight:800;color:#c4b5fd;">−2</div>
-                        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">
-                            Sub-levels Removed</div>
-                    </div>
-                    <div
-                        style="background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);border-radius:12px;padding:20px 28px;text-align:center;">
-                        <div style="font-size:2rem;font-weight:800;color:#a5f3fc;">0</div>
-                        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">
-                            Pages Lost</div>
-                    </div>
-                </div>
-                <p style="color:var(--muted);font-size:.82rem;">All existing pages and content are preserved — only the
-                    navigation structure changes.</p>
             </div>
         </div>
 
